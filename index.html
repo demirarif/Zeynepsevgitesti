@@ -136,6 +136,11 @@
       from { opacity: 0; transform: translateY(8px); }
       to { opacity: 1; transform: translateY(0); }
     }
+    
+    @keyframes fadeInText {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
     .q-index {
       display: inline-flex;
@@ -232,12 +237,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: hidden; 
     }
     .result-text {
       font-size: 18px;
       line-height: 1.7;
       color: var(--text);
       font-weight: 500;
+      animation: fadeInText 0.8s ease forwards;
     }
     .retake-btn {
       padding: 12px 24px;
@@ -319,8 +326,8 @@
       {
         id: 2,
         q: "Zeynep bir şeye çok güldüğünde ilk kimi arayıp aynı şakayı yapar?",
-        options: ["Saplayıcılar Grubu (Oğuz–Alihan–Yk)", "Arif", "Gamze", "Aybike", "Akın"],
-        correct: "Saplayıcılar Grubu (Oğuz–Alihan–Yk)",
+        options: ["Saplayıcılar grubu (Oğuz–Alihan–Yk)", "Arif", "Gamze", "Aybike", "Akın"],
+        correct: "Saplayıcılar grubu (Oğuz–Alihan–Yk)",
         weight: 5
       },
       {
@@ -347,50 +354,50 @@
       {
         id: 6,
         q: "Zeynep en çok hangi şakayı sever?",
-        options: ["küfürlü şakalar", "osuruk şakaları", "kürt şakaları", "fiziksel şakalar"],
-        correct: "osuruk şakaları",
+        options: ["Küfürlü şakalar", "Osuruk şakaları", "Kürt şakaları", "Fiziksel şakalar"],
+        correct: "Osuruk şakaları",
         weight: 7
       },
       {
         id: 7,
         q: "Zeynep Starbucks'tan en çok hangi içeceği alır?",
-        options: ["matcha", "iced latte", "latte", "americano", "misto"],
-        correct: "iced latte",
+        options: ["Matcha", "Iced latte", "Latte", "Americano", "Misto"],
+        correct: "Iced latte",
         weight: 3
       },
       {
         id: 8,
         q: "Zeynep'in favori kahvaltısı nedir?",
-        options: ["yulaf", "avokado/yumurta", "Arif", "serpme kahvaltı", "tost"],
+        options: ["Yulaf", "Avokado/yumurta", "Arif", "Serpme kahvaltı", "Tost"],
         correct: "Arif",
         weight: 7
       },
       {
         id: 9,
         q: "Sabahları ilk yaptığı şey ne olur?",
-        options: ["telefonla oynamak", "Oğuz'a 'günaydın kardeşim' yazmak", "tuvalete gitmek", "yatağını toplamak"],
-        correct: "tuvalete gitmek",
+        options: ["Telefonla oynamak", "Oğuz'a 'günaydın kardeşim' yazmak", "Tuvalete gitmek", "Yatağını toplamak"],
+        correct: "Tuvalete gitmek",
         weight: 5
       },
       {
         id: 10,
         q: "Bir gün boyunca sadece bir içecek içebilecek olsa ne seçerdi?",
-        options: ["bira", "su", "kahve", "ayran"],
-        correct: "su",
+        options: ["Bira", "Su", "Kahve", "Ayran"],
+        correct: "Su",
         weight: 3
       },
       {
         id: 11,
         q: "Zeynep'i en hızlı mutlu eden şey nedir?",
-        options: ["işten erken çıkmak", "Arif'le vakit geçirmek", "arkadaşlarıyla buluşmak", "ailesiyle tatile gitmek"],
-        correct: "işten erken çıkmak",
+        options: ["İşten erken çıkmak", "Arif'le vakit geçirmek", "Arkadaşlarıyla buluşmak", "Ailesiyle tatile gitmek"],
+        correct: "İşten erken çıkmak",
         weight: 7
       },
       {
         id: 12,
         q: "Zeynep'in 'sessizlikte düşündüğü' konular daha çok neyle ilgilidir?",
-        options: ["gelecek", "geçmiş", "hayaller"],
-        correct: "geçmiş",
+        options: ["Gelecek", "Geçmiş", "Hayaller"],
+        correct: "Geçmiş",
         weight: 5
       },
       {
@@ -403,29 +410,29 @@
       {
         id: 14,
         q: "Kırıldığında nasıl tepki verir?",
-        options: ["yokmuş gibi davranır", "'ben iyiyim' der ama değildir", "mizaha vurur", "Arif'e pasif agresif atar yapar"],
+        options: ["Yokmuş gibi davranır", "'Ben iyiyim' der ama değildir", "Mizaha vurur", "Arif'e pasif agresif atar yapar"],
         correct: "Arif'e pasif agresif atar yapar",
         weight: 5
       },
       {
         id: 15,
         q: "Birine sevildiğini nasıl hissettirir?",
-        options: ["küçük jestlerle", "sözlerle", "zaman ayırarak", "ters köşe yaparak"],
-        correct: "zaman ayırarak",
+        options: ["Küçük jestlerle", "Sözlerle", "Zaman ayırarak", "Ters köşe yaparak"],
+        correct: "Zaman ayırarak",
         weight: 5
       },
       {
         id: 16,
         q: "Hangi durumda kalbi yumuşar?",
-        options: ["içten bir özür", "nostaljik bir anı", "yardım eli", "beklenmedik samimiyet"],
-        correct: "beklenmedik samimiyet",
+        options: ["İçten bir özür", "Nostaljik bir anı", "Yardım eli", "Beklenmedik samimiyet"],
+        correct: "Beklenmedik samimiyet",
         weight: 5
       },
       {
         id: 17,
         q: "'Aşkta en çok değer verdiği şey' nedir?",
-        options: ["saygı", "tutarlılık", "heyecan", "ortak hayal"],
-        correct: "heyecan",
+        options: ["Saygı", "Tutarlılık", "Heyecan", "Ortak hayal"],
+        correct: "Heyecan",
         weight: 7
       },
       {
@@ -438,15 +445,15 @@
       {
         id: 19,
         q: "Zeynep bir günlüğüne başka biriyle yer değiştirse, kim olurdu ve neden?",
-        options: ["Bozpek", "Rıfat", "Gigi Hadid", "Arif"],
+        options: ["Bozpek", "Rıfat", "Gigi hadid", "Arif"],
         correct: "Arif",
         weight: 7
       },
       {
         id: 20,
         q: "Zeynep bir tablo olsaydı, hangi renk baskın olurdu?",
-        options: ["bej", "turuncu", "yeşil", "pembe", "siyah", "hiçbiri"],
-        correct: "hiçbiri",
+        options: ["Bej", "Turuncu", "Yeşil", "Pembe", "Siyah", "Hiçbiri"],
+        correct: "Hiçbiri",
         weight: 3
       }
     ];
@@ -454,7 +461,8 @@
     const state = {
       currentQuestion: 0,
       answers: Array(QUESTIONS.length).fill(null),
-      userName: ""
+      userName: "",
+      isTransitioning: false // Soru atlamasını önlemek için kilit
     };
 
     function startQuiz() {
@@ -511,9 +519,20 @@
     }
 
     function selectOption(index) {
+      if (state.isTransitioning) return; // Kilitliyse (geçiş yapılıyorsa) işlemi iptal et
+      
+      state.isTransitioning = true; // Kilidi etkinleştir
+      
       const q = QUESTIONS[state.currentQuestion];
       const answer = q.options[index];
       state.answers[state.currentQuestion] = answer;
+      
+      // Seçimi göstermek için seçilen şıkkı anında güncelle
+      const optionElements = document.querySelectorAll('.option');
+      optionElements.forEach((el, i) => {
+        el.classList.remove('selected');
+        if (i === index) el.classList.add('selected');
+      });
 
       const isLastQuestion = state.currentQuestion === QUESTIONS.length - 1;
       
@@ -524,10 +543,13 @@
           state.currentQuestion++;
           renderQuestion();
         }
+        state.isTransitioning = false; // Kilidi kaldır
       }, 300);
     }
 
     function handleBack() {
+      if (state.isTransitioning) return; // Geçiş sırasında geri dönmeyi engelle
+
       if (state.currentQuestion > 0) {
         state.currentQuestion--;
         renderQuestion();
@@ -540,8 +562,17 @@
 
       QUESTIONS.forEach((q, index) => {
         totalPoints += q.weight;
-        if (state.answers[index] === q.correct) {
-          earnedPoints += q.weight;
+        
+        const selectedAnswer = state.answers[index];
+        const correctAnswer = q.correct;
+        
+        // Puanlama hatasını düzeltmek için her iki cevabı da küçük harfe çevirerek karşılaştır
+        if (typeof selectedAnswer === 'string' && typeof correctAnswer === 'string') {
+          if (selectedAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+            earnedPoints += q.weight;
+          }
+        } else if (selectedAnswer === correctAnswer) {
+            earnedPoints += q.weight;
         }
       });
 
@@ -580,25 +611,6 @@
       }
     }
 
-    // --- DEĞİŞİKLİK BURADA BAŞLIYOR ---
-    // Bu fonksiyon artık harf harf değil, kelime kelime yazar.
-    function typeWriter(element, text, speed = 250) { // 'speed' artık kelimeler arası bekleme süresidir
-      const words = text.split(' '); // Metni kelimelere ayır
-      let i = 0;
-      element.textContent = '';
-      
-      function type() {
-        if (i < words.length) {
-          element.textContent += words[i] + ' '; // Sıradaki kelimeyi ve bir boşluk ekle
-          i++; // Bir sonraki kelimeye geç
-          setTimeout(type, speed); // Belirlenen süre kadar bekle
-        }
-      }
-      
-      type();
-    }
-    // --- DEĞİŞİKLİK BURADA BİTİYOR ---
-
     function showResult(finalScore, name) {
       document.getElementById("quizSection").classList.add("hidden");
       
@@ -609,7 +621,7 @@
           <h2 class="result-name">${name}, sonuçların hazır!</h2>
           
           <div class="result-message">
-            <div class="result-text" id="typedMessage"></div>
+            <div class="result-text">${message}</div>
           </div>
 
           <button class="retake-btn" onclick="retakeQuiz()">Tekrar Dene</button>
@@ -617,19 +629,13 @@
       `;
       
       document.getElementById("result").classList.remove("hidden");
-      
-      setTimeout(() => {
-        const messageElement = document.getElementById("typedMessage");
-        // --- DEĞİŞİKLİK BURADA ---
-        // 'speed' (hız) ayarını kelime başına 250ms (saniyenin çeyreği) olarak ayarladık.
-        typeWriter(messageElement, message, 250); 
-      }, 300);
     }
 
     function retakeQuiz() {
       state.currentQuestion = 0;
       state.answers = Array(QUESTIONS.length).fill(null);
       state.userName = "";
+      state.isTransitioning = false; // Kilidi sıfırla
       document.getElementById("result").classList.add("hidden");
       document.getElementById("welcomeScreen").classList.remove("hidden");
       document.getElementById("nameInput").value = "";
