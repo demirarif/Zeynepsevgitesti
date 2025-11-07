@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zeynep'i Ne Kadar Seviyorum Testi</title>
+  <meta name="description" content="Zeynep hakkında ne kadar çok şey biliyorsun? Bu eğlenceli testle öğren!" />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --accent: #f7cfe3;
+      --text: #222222;
+      --muted: #6b7280;
+      --card: #ffffff;
+      --shadow: rgba(17, 24, 39, 0.12);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: background-color 300ms ease, color 300ms ease;
+    }
+
+    .app {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 16px;
+      min-height: 100vh;
+    }
+
+    .banner {
+      text-align: center;
+      padding: 20px 16px;
+      border-radius: 14px;
+      background: var(--card);
+      box-shadow: 0 10px 24px var(--shadow);
+      margin-bottom: 16px;
+    }
+    .title {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: 0.2px;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .welcome-screen {
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .welcome-title {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .welcome-subtitle {
+      font-size: 16px;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+    .input {
+      width: 100%;
+      max-width: 400px;
+      height: 48px;
+      padding: 12px 16px;
+      border: 2px solid #e5e7eb;
+      border-radius: 12px;
+      font-size: 16px;
+      transition: border-color 200ms ease;
+      margin-bottom: 20px;
+    }
+    .input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .start-btn {
+      padding: 14px 32px;
+      background: var(--accent);
+      border: 2px solid var(--accent);
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 700;
+      transition: all 200ms ease;
+      color: #111827;
+    }
+    .start-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(247, 207, 227, 0.4);
+    }
+    .start-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .progress-wrap {
+      position: sticky;
+      top: 0;
+      background: linear-gradient(to bottom, var(--bg), rgba(255,255,255,0));
+      padding-bottom: 8px;
+      z-index: 5;
+      margin-bottom: 16px;
+    }
+    .progress {
+      height: 8px;
+      width: 100%;
+      background: #f1f5f9;
+      border-radius: 999px;
+      overflow: hidden;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.04);
+    }
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: var(--accent);
+      transition: width 250ms ease;
+    }
+
+    .card {
+      background: var(--card);
+      box-shadow: 0 12px 28px var(--shadow);
+      border-radius: 18px;
+      padding: 20px;
+      margin-bottom: 16px;
+      animation: fadeIn 220ms ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .q-index {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 28px;
+      height: 28px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #111827;
+      background: var(--accent);
+      border-radius: 999px;
+      margin-right: 8px;
+      padding: 0 10px;
+    }
+    .question {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      line-height: 1.35;
+      display: flex;
+      align-items: center;
+    }
+
+    .options {
+      display: grid;
+      gap: 10px;
+    }
+    .option {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      border: 2px solid #e5e7eb;
+      border-radius: 12px;
+      background: #fff;
+      transition: all 200ms ease;
+      cursor: pointer;
+      user-select: none;
+    }
+    .option:hover { 
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+    .option.selected { 
+      border-color: var(--accent);
+      background: rgba(247, 207, 227, 0.1);
+    }
+    .option input[type="radio"] { 
+      width: 20px;
+      height: 20px;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+    .option label {
+      flex: 1;
+      cursor: pointer;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .back-btn {
+      display: inline-block;
+      padding: 8px 16px;
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 14px;
+      border-radius: 8px;
+      transition: all 200ms ease;
+    }
+    .back-btn:hover {
+      background: #f3f4f6;
+      color: var(--text);
+    }
+
+    .result-card {
+      text-align: center;
+      padding: 32px 20px;
+    }
+    .result-name {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 32px;
+    }
+    .result-message {
+      padding: 32px 24px;
+      border-radius: 12px;
+      border: 2px solid var(--accent);
+      background-color: rgba(247, 207, 227, 0.05);
+      margin-bottom: 32px;
+      min-height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .result-text {
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--text);
+      font-weight: 500;
+    }
+    .retake-btn {
+      padding: 12px 24px;
+      background: transparent;
+      border: 2px solid #e5e7eb;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 600;
+      transition: all 200ms ease;
+    }
+    .retake-btn:hover {
+      border-color: var(--accent);
+      background: rgba(247, 207, 227, 0.1);
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+      margin: 24px 0;
+    }
+
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <div class="banner card">
+      <h1 class="title">Zeynep'i Ne Kadar Seviyorum Testi</h1>
+      <p class="subtitle">powered by M. Rif**</p>
+    </div>
+
+    <div id="welcomeScreen" class="card">
+      <div class="welcome-screen">
+        <h2 class="welcome-title">Hoş Geldin!</h2>
+        <p class="welcome-subtitle">Zeynep hakkında ne kadar çok şey biliyorsun? Hadi başlayalım!</p>
+        <input id="nameInput" class="input" placeholder="Ad Soyad" />
+        <br/>
+        <button id="startBtn" class="start-btn" onclick="startQuiz()">Başla</button>
+      </div>
+    </div>
+
+    <div id="quizSection" class="hidden">
+      <div class="progress-wrap">
+        <div class="progress">
+          <div id="progressBar" class="progress-bar"></div>
+        </div>
+      </div>
+
+      <div id="questionCard" class="card"></div>
+
+      <div id="backBtnContainer" class="hidden" style="text-align: center;">
+        <button id="backBtn" class="back-btn">← Geri dön</button>
+      </div>
+    </div>
+
+    <div id="result" class="card hidden"></div>
+
+    <div class="footer">© 2025 Zeynep – Mobil uyumlu, pastel temalı sevgi testi</div>
+  </div>
+
+  <script>
+    const ACCENTS = [
+      "#f7cfe3", "#ffd6a5", "#bde0fe", "#caffbf", "#e4c1f9",
+      "#ffe0f0", "#fef9c3", "#c7f9cc", "#d1d5ff", "#ffd7ba",
+      "#d9f99d", "#fbcfe8", "#bae6fd", "#fecaca", "#ede9fe",
+      "#fde68a", "#bbf7d0", "#a5f3fc", "#fecdd3", "#e9d5ff"
+    ];
+
+    const QUESTIONS = [
+      {
+        id: 1,
+        q: "Paris'in diğer yavrusunun, yani Leo'nun kardeşinin adı nedir?",
+        options: ["Theo", "Mimi", "Roma", "Alihan"],
+        correct: "Mimi",
+        weight: 3
+      },
+      {
+        id: 2,
+        q: "Zeynep bir şeye çok güldüğünde ilk kimi arayıp aynı şakayı yapar?",
+        options: ["Saplayıcılar Grubu (Oğuz–Alihan–Yk)", "Arif", "Gamze", "Aybike", "Akın"],
+        correct: "Saplayıcılar Grubu (Oğuz–Alihan–Yk)",
+        weight: 5
+      },
+      {
+        id: 3,
+        q: "Zeynep sevmediği birini gördüğünde ilk kime yazar?",
+        options: ["Gamze", "Arif", "Saplayıcılar", "Aybike"],
+        correct: "Gamze",
+        weight: 5
+      },
+      {
+        id: 4,
+        q: "Zeynep hangi takımı tutmaktadır?",
+        options: ["Galatasaray", "Fenerbahçe", "Beşiktaş", "Ben sadece milli takımı tutarım", "Takım mı? Kahve takımını!"],
+        correct: "Fenerbahçe",
+        weight: 3
+      },
+      {
+        id: 5,
+        q: "Arif'te en sevmediği ama Arif'in sürekli yaptığı şey nedir?",
+        options: ["Her cümleye 'bak şimdi'yle başlamak", "Uyandırıp sonra kendi uyumak", "Espri yaptığını sanmak", "Bir şey anlatırken konudan sapmak"],
+        correct: "Uyandırıp sonra kendi uyumak",
+        weight: 7
+      },
+      {
+        id: 6,
+        q: "Zeynep en çok hangi şakayı sever?",
+        options: ["küfürlü şakalar", "osuruk şakaları", "kürt şakaları", "fiziksel şakalar"],
+        correct: "osuruk şakaları",
+        weight: 7
+      },
+      {
+        id: 7,
+        q: "Zeynep Starbucks'tan en çok hangi içeceği alır?",
+        options: ["matcha", "iced latte", "latte", "americano", "misto"],
+        correct: "iced latte",
+        weight: 3
+      },
+      {
+        id: 8,
+        q: "Zeynep'in favori kahvaltısı nedir?",
+        options: ["yulaf", "avokado/yumurta", "Arif", "serpme kahvaltı", "tost"],
+        correct: "Arif",
+        weight: 7
+      },
+      {
+        id: 9,
+        q: "Sabahları ilk yaptığı şey ne olur?",
+        options: ["telefonla oynamak", "Oğuz'a 'günaydın kardeşim' yazmak", "tuvalete gitmek", "yatağını toplamak"],
+        correct: "tuvalete gitmek",
+        weight: 5
+      },
+      {
+        id: 10,
+        q: "Bir gün boyunca sadece bir içecek içebilecek olsa ne seçerdi?",
+        options: ["bira", "su", "kahve", "ayran"],
+        correct: "su",
+        weight: 3
+      },
+      {
+        id: 11,
+        q: "Zeynep'i en hızlı mutlu eden şey nedir?",
+        options: ["işten erken çıkmak", "Arif'le vakit geçirmek", "arkadaşlarıyla buluşmak", "ailesiyle tatile gitmek"],
+        correct: "işten erken çıkmak",
+        weight: 7
+      },
+      {
+        id: 12,
+        q: "Zeynep'in 'sessizlikte düşündüğü' konular daha çok neyle ilgilidir?",
+        options: ["gelecek", "geçmiş", "hayaller"],
+        correct: "geçmiş",
+        weight: 5
+      },
+      {
+        id: 13,
+        q: "En sevdiği şehir ruhu hangisidir?",
+        options: ["Paris'in zarafeti", "İstanbul'un kaosu", "Bodrum'un huzuru", "Ankara'nın enerjisi", "Atina'nın gizemi"],
+        correct: "Atina'nın gizemi",
+        weight: 3
+      },
+      {
+        id: 14,
+        q: "Kırıldığında nasıl tepki verir?",
+        options: ["yokmuş gibi davranır", "'ben iyiyim' der ama değildir", "mizaha vurur", "Arif'e pasif agresif atar yapar"],
+        correct: "Arif'e pasif agresif atar yapar",
+        weight: 5
+      },
+      {
+        id: 15,
+        q: "Birine sevildiğini nasıl hissettirir?",
+        options: ["küçük jestlerle", "sözlerle", "zaman ayırarak", "ters köşe yaparak"],
+        correct: "zaman ayırarak",
+        weight: 5
+      },
+      {
+        id: 16,
+        q: "Hangi durumda kalbi yumuşar?",
+        options: ["içten bir özür", "nostaljik bir anı", "yardım eli", "beklenmedik samimiyet"],
+        correct: "beklenmedik samimiyet",
+        weight: 5
+      },
+      {
+        id: 17,
+        q: "'Aşkta en çok değer verdiği şey' nedir?",
+        options: ["saygı", "tutarlılık", "heyecan", "ortak hayal"],
+        correct: "heyecan",
+        weight: 7
+      },
+      {
+        id: 18,
+        q: "Hayatında bir 'yıldız' kişi varsa, o kim olurdu — ve neden?",
+        options: ["Bozpek", "Başkan", "Tarkan", "Erdoğan"],
+        correct: "Başkan",
+        weight: 7
+      },
+      {
+        id: 19,
+        q: "Zeynep bir günlüğüne başka biriyle yer değiştirse, kim olurdu ve neden?",
+        options: ["Bozpek", "Rıfat", "Gigi Hadid", "Arif"],
+        correct: "Arif",
+        weight: 7
+      },
+      {
+        id: 20,
+        q: "Zeynep bir tablo olsaydı, hangi renk baskın olurdu?",
+        options: ["bej", "turuncu", "yeşil", "pembe", "siyah", "hiçbiri"],
+        correct: "hiçbiri",
+        weight: 3
+      }
+    ];
+
+    const state = {
+      currentQuestion: 0,
+      answers: Array(QUESTIONS.length).fill(null),
+      userName: ""
+    };
+
+    function startQuiz() {
+      const name = document.getElementById("nameInput").value.trim();
+      if (!name) {
+        alert("Lütfen adınızı ve soyadınızı girin!");
+        return;
+      }
+
+      state.userName = name;
+      document.getElementById("welcomeScreen").classList.add("hidden");
+      document.getElementById("quizSection").classList.remove("hidden");
+      renderQuestion();
+      
+      document.getElementById("backBtn").addEventListener("click", handleBack);
+    }
+
+    function setAccent(index) {
+      const color = ACCENTS[index % ACCENTS.length];
+      document.documentElement.style.setProperty("--accent", color);
+    }
+
+    function renderQuestion() {
+      const q = QUESTIONS[state.currentQuestion];
+      setAccent(state.currentQuestion);
+      
+      const percentage = Math.round(((state.currentQuestion + 1) / QUESTIONS.length) * 100);
+      document.getElementById("progressBar").style.width = percentage + "%";
+
+      const optionsHtml = q.options.map((opt, i) => {
+        const checked = state.answers[state.currentQuestion] === opt ? "checked" : "";
+        const selectedClass = state.answers[state.currentQuestion] === opt ? "selected" : "";
+        return `
+          <div class="option ${selectedClass}" onclick="selectOption(${i})">
+            <input type="radio" name="opt" id="opt_${i}" value="${opt}" ${checked} />
+            <label for="opt_${i}">${opt}</label>
+          </div>
+        `;
+      }).join("");
+
+      document.getElementById("questionCard").innerHTML = `
+        <div class="question">
+          <span class="q-index">${q.id}</span>
+          <span>${q.q}</span>
+        </div>
+        <div class="options">${optionsHtml}</div>
+      `;
+
+      if (state.currentQuestion > 0) {
+        document.getElementById("backBtnContainer").classList.remove("hidden");
+      } else {
+        document.getElementById("backBtnContainer").classList.add("hidden");
+      }
+    }
+
+    function selectOption(index) {
+      const q = QUESTIONS[state.currentQuestion];
+      const answer = q.options[index];
+      state.answers[state.currentQuestion] = answer;
+
+      const isLastQuestion = state.currentQuestion === QUESTIONS.length - 1;
+      
+      setTimeout(() => {
+        if (isLastQuestion) {
+          handleSubmit();
+        } else {
+          state.currentQuestion++;
+          renderQuestion();
+        }
+      }, 300);
+    }
+
+    function handleBack() {
+      if (state.currentQuestion > 0) {
+        state.currentQuestion--;
+        renderQuestion();
+      }
+    }
+
+    function calculateScore() {
+      let earnedPoints = 0;
+      let totalPoints = 0;
+
+      QUESTIONS.forEach((q, index) => {
+        totalPoints += q.weight;
+        if (state.answers[index] === q.correct) {
+          earnedPoints += q.weight;
+        }
+      });
+
+      return Math.round((earnedPoints / totalPoints) * 100);
+    }
+
+    function handleSubmit() {
+      const score = calculateScore();
+      
+      console.log({
+        name: state.userName,
+        answers: state.answers,
+        score
+      });
+
+      showResult(score, state.userName);
+    }
+
+    function getScoreMessage(score) {
+      if (score >= 0 && score <= 20) {
+        return "Hiçbir şey hissetmiyorsun. Git başka test çöz, bu seni aşar.";
+      } else if (score >= 21 && score <= 35) {
+        return "Zeynep seni görse selam bile vermez. Soğuksun kral.";
+      } else if (score >= 36 && score <= 50) {
+        return "Biraz seviyorsun ama o da muhtemelen yanlışlıkla.";
+      } else if (score >= 51 && score <= 65) {
+        return "Kafanı karıştırmış… Ne seviyorsun ne de vazgeçiyorsun.";
+      } else if (score >= 66 && score <= 75) {
+        return "Seviyorsun ama belli etmiyorsun, ok.";
+      } else if (score >= 76 && score <= 85) {
+        return "Gayet seviyorsun, ama arada saçmalıyorsun, sikmim ha.";
+      } else if (score >= 86 && score <= 95) {
+        return "Afferim böyle sev hep, ben de seni seviyorum.";
+      } else {
+        return "En çok sen seviyorsun. Helal olsun.";
+      }
+    }
+
+    // --- DEĞİŞİKLİK BURADA BAŞLIYOR ---
+    // Bu fonksiyon artık harf harf değil, kelime kelime yazar.
+    function typeWriter(element, text, speed = 250) { // 'speed' artık kelimeler arası bekleme süresidir
+      const words = text.split(' '); // Metni kelimelere ayır
+      let i = 0;
+      element.textContent = '';
+      
+      function type() {
+        if (i < words.length) {
+          element.textContent += words[i] + ' '; // Sıradaki kelimeyi ve bir boşluk ekle
+          i++; // Bir sonraki kelimeye geç
+          setTimeout(type, speed); // Belirlenen süre kadar bekle
+        }
+      }
+      
+      type();
+    }
+    // --- DEĞİŞİKLİK BURADA BİTİYOR ---
+
+    function showResult(finalScore, name) {
+      document.getElementById("quizSection").classList.add("hidden");
+      
+      const message = getScoreMessage(finalScore);
+      
+      document.getElementById("result").innerHTML = `
+        <div class="result-card">
+          <h2 class="result-name">${name}, sonuçların hazır!</h2>
+          
+          <div class="result-message">
+            <div class="result-text" id="typedMessage"></div>
+          </div>
+
+          <button class="retake-btn" onclick="retakeQuiz()">Tekrar Dene</button>
+        </div>
+      `;
+      
+      document.getElementById("result").classList.remove("hidden");
+      
+      setTimeout(() => {
+        const messageElement = document.getElementById("typedMessage");
+        // --- DEĞİŞİKLİK BURADA ---
+        // 'speed' (hız) ayarını kelime başına 250ms (saniyenin çeyreği) olarak ayarladık.
+        typeWriter(messageElement, message, 250); 
+      }, 300);
+    }
+
+    function retakeQuiz() {
+      state.currentQuestion = 0;
+      state.answers = Array(QUESTIONS.length).fill(null);
+      state.userName = "";
+      document.getElementById("result").classList.add("hidden");
+      document.getElementById("welcomeScreen").classList.remove("hidden");
+      document.getElementById("nameInput").value = "";
+      window.scrollTo(0, 0);
+    }
+  </script>
+</body>
+</html>
